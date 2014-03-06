@@ -27,6 +27,7 @@ public class FreemarkerView extends FreeMarkerView {
 		request.setAttribute("_th", templateHelper);
 		request.setAttribute("_sc", request.getServletPath());
 		request.setAttribute("_permissionHandler", ConfigurablePermissionsHandler.getHandler());
+		request.setAttribute("_contextTemplates", "/templates");
 		Authentication user = SecurityContextHolder.getContext().getAuthentication();
 		if(user != null && !user.getPrincipal().equals("anonymousUser")) {
 			request.setAttribute("_user", ((User) user.getPrincipal()).getUsername());

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<decorators defaultdir="/decorators">
+<decorators defaultdir="/templates/decorators">
 	<excludes>
 		<pattern>/js/*</pattern>
 		<pattern>/images/*</pattern>
