@@ -41,15 +41,12 @@
       View resolvers can also be configured with ResourceBundles or XML files. If you need
       different view resolving based on Locale, you have to use the resource bundle resolver.
     -->
-    <bean id="viewResolver" class="com.nex.web.spring.view.FreemarkerViewResolver">
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
       <property name="viewClass" value="com.nex.web.spring.view.FreemarkerView"/>
       <property name="cache" value="true"/>
       <property name="prefix" value=""/>
       <property name="suffix" value=".ftl"/>
-      <property name="requestContextAttribute"  value="request" />
-      <property name="templateHelper" ref="ftlTemplateHelper" />
+      <property name="requestContextAttribute" value="request" />
     </bean>
     <mvc:annotation-driven conversion-service="conversionService" validator="validatorFactory"/>
-    <bean id="ftlTemplateHelper" class="com.nex.web.freemarker.FreemarkerTemplateHelper" p:messageSource-ref="messageSource"/>
-    
 </beans>
