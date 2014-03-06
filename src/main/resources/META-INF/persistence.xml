@@ -3,17 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-		<persistence-unit name="puCulfinder" transaction-type="RESOURCE_LOCAL">
+		<persistence-unit name="puTest" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-    	<non-jta-data-source>jdbc/culfinderDS</non-jta-data-source>    	
+    	<non-jta-data-source>jdbc/testDS</non-jta-data-source>    	
+		
 		
 		<class>com.nex.domain.User</class>
-		<class>com.nex.domain.CulturalObject</class>
-		<class>com.nex.domain.CulturalType</class>
-		<class>com.nex.domain.CulturalTypeText</class>
-		<class>com.nex.domain.Language</class>
-		<class>com.nex.domain.TransactionHistory</class>
-		
+		<class>com.nex.domain.Role</class>
+				
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>

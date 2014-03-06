@@ -34,7 +34,7 @@
 			/>
 <!-- 			p:formatters-ref="uiFormatters"  -->
 <!-- 		<util:map id="uiFormatters"></util:map> -->
-		<bean id="default.em" class="com.nex.domain.common.CulFinderEntityManagerAccessor" />
+		<bean id="default.em" class="com.nex.domain.common.DefaultEntityManagerAccessor" />
 		
 		<bean id="jpqlfilter" class="cz.tsystems.common.data.filter.FilterUtil"
 			p:conversionService-ref="conversionService" p:entityManagerAccessor-ref="default.em" />

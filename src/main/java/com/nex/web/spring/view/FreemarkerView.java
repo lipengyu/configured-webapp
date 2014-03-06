@@ -5,10 +5,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.servlet.support.RequestContext;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
+import com.nex.security.permissions.ConfigurablePermissionsHandler;
 import com.nex.web.freemarker.FreemarkerTemplateHelper;
 
 public class FreemarkerView extends FreeMarkerView {
@@ -23,7 +26,11 @@ public class FreemarkerView extends FreeMarkerView {
 				requestContext);
 		request.setAttribute("_th", templateHelper);
 		request.setAttribute("_sc", request.getServletPath());
-
+		request.setAttribute("_permissionHandler", ConfigurablePermissionsHandler.getHandler());
+		Authentication user = SecurityContextHolder.getContext().getAuthentication();
+		if(user != null && !user.getPrincipal().equals("anonymousUser")) {
+			request.setAttribute("_user", ((User) user.getPrincipal()).getUsername());
+		}
 		super.doRender(model, request, response);
 	}
 
