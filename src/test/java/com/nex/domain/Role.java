@@ -8,7 +8,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 
 @RooJavaBean
-@RooJpaActiveRecord(persistenceUnit = "puTest", table = "role", versionField="")
+@RooJpaActiveRecord(persistenceUnit = "puTest", table = "roles", versionField="")
 public class Role {
 	
 	@Id

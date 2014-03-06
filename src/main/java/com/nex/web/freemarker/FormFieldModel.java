@@ -16,7 +16,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
-import com.nex.security.ReflectionUtils;
+import com.nex.utils.ReflectionUtils;
 import com.nex.utils.Requestutils;
 
 @Configurable

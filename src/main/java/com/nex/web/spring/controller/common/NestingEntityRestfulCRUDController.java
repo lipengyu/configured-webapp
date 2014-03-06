@@ -49,8 +49,7 @@ public abstract class NestingEntityRestfulCRUDController<T extends Entity>
 	@Resource(name = "jpqlfilter")
 	private FilterUtil jpqlFilter;
 
-	@Resource(name = "validationResourceMessageBundle")
-	private ReloadableResourceBundleMessageSource validationMessageResourceBundle;
+	
 
 	private String controllerURl;
 	protected String redirectUrl = "redirect:";
@@ -161,24 +160,6 @@ public abstract class NestingEntityRestfulCRUDController<T extends Entity>
 			configureEditDialog(uiModel, request, entity);
 			return resolveEditViewName(entity);
 		}
-	}
-
-	public void rejectFormErrors(Locale locale, Errors errors) {
-		rejectAndTranslateError(locale, errors, "form.actions.save.error.message");
-	}
-
-	void rejectAndTranslateError(Locale locale, Errors errors, String code) {
-		rejectAndTranslateError(locale, errors, code, null);
-	}
-
-	void rejectAndTranslateError(Locale locale, Errors errors, String code,
-			Object[] args) {
-		String defaultMessage = code;
-		if (this.validationMessageResourceBundle != null) {
-			defaultMessage = this.validationMessageResourceBundle.getMessage(
-					code, args,locale);
-		}
-		errors.reject(code, defaultMessage);
 	}
 
 	/**

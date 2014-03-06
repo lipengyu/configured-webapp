@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.RequestContext;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.nex.domain.localizedfield.LocalizedFieldAdapter;
-import com.nex.security.ReflectionUtils;
+import com.nex.utils.ReflectionUtils;
 
 import cz.tsystems.common.data.filter.FilteredList;
 import cz.tsystems.common.data.filter.IFilter;

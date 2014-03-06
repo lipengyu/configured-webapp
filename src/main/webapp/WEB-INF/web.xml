@@ -21,17 +21,18 @@
 	</filter>
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
 	</filter>
-
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/web/*</url-pattern>
-	</filter-mapping>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/web/*</url-pattern>
+	</filter-mapping>
+
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -82,22 +83,22 @@
 		<servlet-name>sitemesh-freemarker</servlet-name>
 		<url-pattern>*.ftl</url-pattern>
 	</servlet-mapping>
-	
-	<error-page>  
-      <error-code>404</error-code>  
-      <location>/web/error/404</location>  
-  	</error-page> 
-	
-	<error-page>  
-      <error-code>403</error-code>  
-      <location>/web/error/403</location>  
-  	</error-page> 
-  	
-  	<error-page>  
-      <error-code>500</error-code>  
-      <location>/web/error/500</location>  
-  	</error-page> 
-	
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/web/error/404</location>
+	</error-page>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/web/error/403</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/web/error/500</location>
+	</error-page>
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

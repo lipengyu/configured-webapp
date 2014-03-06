@@ -19,9 +19,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.RequestContext;
 
-import com.nex.security.ReflectionUtils;
-import com.nex.security.StringUtils;
-import com.nex.security.StringUtils.CompareType;
+import com.nex.utils.ReflectionUtils;
+import com.nex.utils.StringUtils;
+import com.nex.utils.StringUtils.CompareType;
 import com.nex.web.spring.controller.common.NestingRestfulCRUDController;
 
 @Configurable

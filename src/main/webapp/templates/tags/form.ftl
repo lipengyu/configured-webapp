@@ -1,13 +1,13 @@
-<#import "/macros/util.ftl" as util />
+<#import "util.ftl" as util />
 <#assign springform=JspTaglibs["http://www.springframework.org/tags/form"]>
 
 <#macro form commandName baseCaption="_NULL_" action="" isFilter=false method="auto" renderTitle=false renderSaveButton=true class="" customForm=false id="_NULL_" additionalErrors=[] showRequired=true>
 	<#assign _formBaseCaption=baseCaption>
 	<#assign _showRequireIndex=showRequired>
-	<#global _formModel=tagTemplateHelper.createFormModel(commandName)>
+	<#global _formModel=_th.createFormModel(commandName)>
 	<#local _method=method>
 	<#if _method=="auto">
-		<#local _method=tagTemplateHelper.getRestMethod(_formModel.formObject)>	
+		<#local _method=_th.getRestMethod(_formModel.formObject)>	
 	</#if>
 	<#local _id=id>
 	<#if util.isNull(_id)>
@@ -179,16 +179,11 @@
 <#macro renderErrors additionalErrors=[]>
 	<#local _errors=_formModel.formErrorsAsString>
 	<#if (_errors?size>0)>
-		<div class="message message-error">
-			<p><@util.message code="validation.error.global.message" /></p>
-		</div>
-		<#--
 		<ul>
 			<#list _errors as e>
 				<li>${e}<#t></li>
 			</#list>
 		</ul>
-		-->
 	</#if>
 		<#assign addErrors=_formModel.readCustomValidationMessages(additionalErrors)>
 		<#if (addErrors?? && addErrors?size>0)>

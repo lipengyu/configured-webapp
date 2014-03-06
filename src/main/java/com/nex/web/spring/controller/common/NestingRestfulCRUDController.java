@@ -17,9 +17,9 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.nex.security.ReflectionUtils;
+import com.nex.utils.ReflectionUtils;
 
-public abstract class NestingRestfulCRUDController<T> {
+public abstract class NestingRestfulCRUDController<T> extends RejectErrorController {
 	private static final Logger log = LoggerFactory.getLogger(NestingRestfulCRUDController.class);
 
 	private Class<T> entityClass;

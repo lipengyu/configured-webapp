@@ -6,8 +6,25 @@ package com.nex.domain;
 import com.nex.domain.Role;
 import com.nex.domain.User;
 import java.util.List;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 privileged aspect User_Roo_JavaBean {
+    
+    public ShaPasswordEncoder User.getEncoder() {
+        return this.encoder;
+    }
+    
+    public void User.setEncoder(ShaPasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
+    
+    public String User.getSalt() {
+        return this.salt;
+    }
+    
+    public void User.setSalt(String salt) {
+        this.salt = salt;
+    }
     
     public Long User.getId() {
         return this.id;
@@ -31,6 +48,14 @@ privileged aspect User_Roo_JavaBean {
     
     public void User.setPassword(String password) {
         this.password = password;
+    }
+    
+    public String User.getMatchPassword() {
+        return this.matchPassword;
+    }
+    
+    public void User.setMatchPassword(String matchPassword) {
+        this.matchPassword = matchPassword;
     }
     
     public List<Role> User.getRoles() {

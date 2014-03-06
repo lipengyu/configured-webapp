@@ -11,6 +11,6 @@ privileged aspect Role_Roo_Jpa_Entity {
     
     declare @type: Role: @Entity;
     
-    declare @type: Role: @Table(name = "role");
+    declare @type: Role: @Table(name = "roles");
     
 }
