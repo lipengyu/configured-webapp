@@ -48,19 +48,21 @@
 	</#if>
 </#macro>
 
-<#macro inputText path renderLabel=true defaultCaption="_NULL_" id="_NULL_" labelArguments=[]>
-	<@input path=path renderLabel=renderLabel type="text" defaultCaption=defaultCaption id=id  labelArguments=labelArguments/>
+<#macro inputText path renderLabel=true defaultCaption="_NULL_" id="_NULL_" labelArguments=[] displayFieldError=true>
+	<@input path=path renderLabel=renderLabel type="text" defaultCaption=defaultCaption id=id  labelArguments=labelArguments  displayFieldError=displayFieldError/>
+</#macro>
+<#macro inputPassword path renderLabel=true defaultCaption="_NULL_" id="_NULL_" labelArguments=[] displayFieldError=true>
+	<@input path=path renderLabel=renderLabel type="password" defaultCaption=defaultCaption id=id  labelArguments=labelArguments  displayFieldError=displayFieldError/>
+</#macro>
+<#macro inputDate path defaultCaption="_NULL_" id="_NULL_" labelArguments=[] displayFieldError=true>
+	<@input path=path type="text" spanClass="inpDate-fix" defaultCaption=defaultCaption id=id  labelArguments=labelArguments  displayFieldError=displayFieldError/>
 </#macro>
 
-<#macro inputDate path defaultCaption="_NULL_" id="_NULL_" labelArguments=[]>
-	<@input path=path type="text" spanClass="inpDate-fix" defaultCaption=defaultCaption id=id  labelArguments=labelArguments/>
+<#macro inputNumber path defaultCaption="_NULL_" id="_NULL_" labelArguments=[] displayFieldError=true>
+	<@input path=path type="text" class="inp-number" defaultCaption=defaultCaption id=id  labelArguments=labelArguments displayFieldError=displayFieldError/>
 </#macro>
 
-<#macro inputNumber path defaultCaption="_NULL_" id="_NULL_" labelArguments=[]>
-	<@input path=path type="text" class="inp-number" defaultCaption=defaultCaption id=id  labelArguments=labelArguments/>
-</#macro>
-
-<#macro input type path renderLabel=true value="_NULL_" defaultCaption="_NULL_" id="_NULL_" class="" spanClass="" labelArguments=[]>
+<#macro input type path renderLabel=true value="_NULL_" defaultCaption="_NULL_" id="_NULL_" class="" spanClass="" labelArguments=[] displayFieldError=true>
 	<#assign _fieldModel=_formModel.getFieldModel(path)>
 	<#assign _fieldError=_fieldModel.hasError()>
 	<#local _id=resolveStyleId(path, id)>
@@ -75,7 +77,9 @@
 		<span class="inp-fix <#if _fieldError>inp-error</#if> ${spanClass}">
 			<input type="${type}" id="${_id}" name="${path}" class="inp-text ${class}" value="${_value}"/>
 		</span>
-		<@renderFieldError fieldModel=_fieldModel />
+		<#if displayFieldError>
+			<@renderFieldError fieldModel=_fieldModel />
+		</#if>
 	</p>
 </#macro>
 
@@ -179,29 +183,27 @@
 <#macro renderErrors additionalErrors=[]>
 	<#local _errors=_formModel.formErrorsAsString>
 	<#if (_errors?size>0)>
-		<ul>
+		<div class="message message-error">
 			<#list _errors as e>
-				<li>${e}<#t></li>
+				<p>${e}</p>
 			</#list>
-		</ul>
-	</#if>
-		<#assign addErrors=_formModel.readCustomValidationMessages(additionalErrors)>
-		<#if (addErrors?? && addErrors?size>0)>
-			<div class="message message-error">
-				<#list addErrors as err>
-					<p>${err}</p>
-				</#list>
-			</div>
+			<#local _addErrors=_formModel.readCustomValidationMessages(additionalErrors)>
+			<#if (_addErrors?? && _addErrors?size>0)>
+			<#list _addErrors as err>
+				<p>${err}</p>
+			</#list>
 		</#if>
+		</div>
+	</#if>		
 </#macro>
 
 <#macro renderFieldError fieldModel>
-<#--local errors=fieldModel.errorMessages>
+<#local errors=fieldModel.errorMessages>
 <#if fieldModel.hasError()>
 	<#list errors as e>
-		<br />${e.message}
+		<br />${e.message}<#t>
 	</#list>
-</#if-->
+</#if>
 </#macro>
 
 <#macro printLabel path id labelArguments=[] defaultCaption="_NULL_" defaultLabel="_NULL_" breakLabel=true renderColon=true>

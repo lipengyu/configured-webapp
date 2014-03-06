@@ -16,6 +16,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -44,6 +45,7 @@ public class User implements Entity {
 
 	@NotNull
 	@Size(min = 1)
+	@Email
 	private String email;
 
 	@NotNull
@@ -65,9 +67,10 @@ public class User implements Entity {
 		this.matchPassword = this.encoder.encodePassword(this.matchPassword, this.salt);
 	}
 	
-	@AssertFalse(message = "${validation.user.exist}")
+	@AssertFalse(message = "{validation.user.exist}")
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public Boolean isUserExist() {
+		if(StringUtils.isEmpty(this.email )) return Boolean.FALSE;
 		List<User> users = User.findUsersByEmail(this.email).getResultList();
 		if(users != null && !users.isEmpty()) {
 			return Boolean.TRUE;
@@ -75,7 +78,7 @@ public class User implements Entity {
 		return Boolean.FALSE;
 	}
 	
-	@AssertTrue(message = "${validation.password.notmatch}")
+	@AssertTrue(message = "{validation.password.notmatch}")
 	public Boolean isPasswordsMatch() {
 		if (!StringUtils.isEmpty(this.password)
 				&& !StringUtils.isEmpty(this.matchPassword)) {

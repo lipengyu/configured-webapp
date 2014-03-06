@@ -8,8 +8,8 @@
 <body>
 	<@form.form commandName="user" method="POST" baseCaption="Registration" additionalErrors=["passwordsMatch", "userExist"]>
 		<@form.inputText path="email" />
-		<@form.inputText path="password" />
-		<@form.inputText path="matchPassword" />
+		<@form.inputPassword path="password" />
+		<@form.inputPassword path="matchPassword" />
 	</@form.form>
 	
 	

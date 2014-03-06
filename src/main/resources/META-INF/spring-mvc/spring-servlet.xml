@@ -17,7 +17,6 @@
 	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
 	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
 <!-- 	<mvc:resources mapping="/decorators/**" location="/WEB-INF/decorators/" /> -->
-	<mvc:annotation-driven />
 	
 	<context:component-scan base-package="com.nex.web.spring.controller" >
 		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation" />
@@ -26,6 +25,7 @@
 	<!-- freemarker config -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
       <property name="templateLoaderPath" value="/templates/"/>
+      <property name="defaultEncoding" value="UTF-8"/>
     </bean>
     
 	
@@ -45,6 +45,7 @@
       <property name="viewClass" value="com.nex.web.spring.view.FreemarkerView"/>
       <property name="cache" value="true"/>
       <property name="prefix" value=""/>
+      <property name="contentType" value="text/html;charset=UTF-8"/>
       <property name="suffix" value=".ftl"/>
       <property name="requestContextAttribute" value="request" />
     </bean>
