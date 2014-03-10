@@ -3,73 +3,73 @@
 
 package com.nex.domain;
 
-import com.nex.domain.Language;
+import com.nex.domain.Tag;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Language_Roo_Jpa_ActiveRecord {
+privileged aspect Tag_Roo_Jpa_ActiveRecord {
     
-    @PersistenceContext(unitName = "puTest")
-    transient EntityManager Language.entityManager;
+    @PersistenceContext(unitName = "puPsyartists")
+    transient EntityManager Tag.entityManager;
     
-    public static final EntityManager Language.entityManager() {
-        EntityManager em = new Language().entityManager;
+    public static final EntityManager Tag.entityManager() {
+        EntityManager em = new Tag().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Language.countLanguages() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Language o", Long.class).getSingleResult();
+    public static long Tag.countTags() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Tag o", Long.class).getSingleResult();
     }
     
-    public static List<Language> Language.findAllLanguages() {
-        return entityManager().createQuery("SELECT o FROM Language o", Language.class).getResultList();
+    public static List<Tag> Tag.findAllTags() {
+        return entityManager().createQuery("SELECT o FROM Tag o", Tag.class).getResultList();
     }
     
-    public static Language Language.findLanguage(String id) {
-        if (id == null || id.length() == 0) return null;
-        return entityManager().find(Language.class, id);
+    public static Tag Tag.findTag(Long id) {
+        if (id == null) return null;
+        return entityManager().find(Tag.class, id);
     }
     
-    public static List<Language> Language.findLanguageEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Language o", Language.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Tag> Tag.findTagEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Tag o", Tag.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void Language.persist() {
+    public void Tag.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Language.remove() {
+    public void Tag.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Language attached = Language.findLanguage(this.id);
+            Tag attached = Tag.findTag(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Language.flush() {
+    public void Tag.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Language.clear() {
+    public void Tag.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Language Language.merge() {
+    public Tag Tag.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Language merged = this.entityManager.merge(this);
+        Tag merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
